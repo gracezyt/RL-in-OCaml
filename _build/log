@@ -1,0 +1,16 @@
+# dune exec final
+# OCAMLPARAM: unset
+# Shared cache: enabled-except-user-rules
+# Shared cache location: /Users/grace/.cache/dune/db
+# Workspace root: /Users/grace/Documents/Classes/COS326/final
+# Auto-detected concurrency: 14
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; instrument_with = []
+#  }
+$ /Users/grace/.opam/cos326-2025fa/bin/ocamlc.opt -config > /var/folders/ns/frf2vjm12r7dmf3fg6kgz6bh0000gn/T/dune_42e832_output
