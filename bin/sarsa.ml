@@ -2,7 +2,7 @@ type pos = int * int
 type reward = float
 type size = int * int
 type reward_list = (int * int * reward) list
-type env_state = (size * reward_list * reward_list) 
+type env_state = (size * reward_list) 
 
 let print_list_of_list_of_list lll =
   List.iteri (fun x row ->
@@ -28,7 +28,7 @@ let episode_length = 30
 let reward = [(2, 1, 1.0);(1, 2, 1.0);(2, 2, 2.0);(2,3, 3.0);(3, 2, 3.0);(3, 3, 5.0)]
 let action_list = [(1, 0); (0, 1); (-1, 0); (0, -1)]
 let size = (4, 4)
-let env_state = (size, reward, reward)
+let env_state = (size, reward)
 let q_table_dims = (fst (size), snd (size), num_actions)
 let move = Final.Env.move
 

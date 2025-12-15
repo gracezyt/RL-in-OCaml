@@ -2,7 +2,7 @@ type pos = int * int
 type reward = float
 type size = int * int
 type reward_list = (int * int * reward) list
-type env_state = (size * reward_list * reward_list) 
+type env_state = (size * reward_list) 
 
 (* Env Params *)
 let death_states = [(3, 0)]
@@ -27,9 +27,9 @@ let get_reward (pos:pos) (curr_env: reward_list) : (reward * reward_list) =
   aux pos curr_env (0.0, [])
 
 (* Collects reward and updates position of the agent and the environment state *)
-let move (position, action) (size, env, copy) : (pos * reward * env_state) = 
+let move (position, action) (size, env) : (pos * reward * env_state) = 
   let (x, y) = position in 
   let temp_pos = (x + fst action, y + snd action) in 
   let new_pos = if valid_pos position temp_pos size death_states obstacles then temp_pos else position in 
   let (reward, new_env) = get_reward new_pos env in
-  (new_pos, reward, (size, new_env, copy))
+  (new_pos, reward, (size, new_env))

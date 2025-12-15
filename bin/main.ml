@@ -2,7 +2,7 @@ type pos = int * int
 type reward = float
 type size = int * int
 type reward_list = (int * int * reward) list
-type env_state = (size * reward_list * reward_list) 
+type env_state = (size * reward_list) 
 
 let print_list_of_list_of_list lll =
   List.iteri (fun x row ->
@@ -23,13 +23,13 @@ let num_actions = 4
 let learning_rate = 0.1
 let discount_factor = 0.99
 let exploration_prob = 0.1
-let num_epochs = 1000
+let num_epochs = 50
 let episode_length = 100
-let reward = [(2,3, 3.0);(3, 2, 3.0);(3, 3, 10.0)]
+let reward = [(1, 2, 1.0);(2, 1, 1.0);(2, 2, 2.0);(2,3, 3.0);(3, 2, 3.0);(3, 3, 5.0)]
 let action_list = [(1, 0); (0, 1); (-1, 0); (0, -1)]
 let size = (4, 4)
 
-let env_state = (size, reward, reward)
+let env_state = (size, reward)
 let q_table_dims = (fst (size), snd (size), num_actions)
 (*assume that the index is less than the list length, otherwise raise an exception *)
 (* exception IndexOutOfBounds of int *)
@@ -59,7 +59,7 @@ let epsilon_greedy (q_table) (curr_pos:pos) (epsilon:float) =
 let rec train (ep_length:int) (env:env_state) (curr_pos:pos) (q_table) (cum_reward: float) (curr_action_idx:int)=
   let update (env:env_state) = 
     let curr_action = List.nth action_list curr_action_idx in
-    let next_state, reward, new_env = Final.Complex_env.move (curr_pos, curr_action) (env) in 
+    let next_state, reward, new_env = Final.Env.move (curr_pos, curr_action) (env) in 
     let next_x, next_y = next_state in 
     let next_action_idx = epsilon_greedy q_table next_state exploration_prob in
     let curr_x, curr_y = curr_pos in 
